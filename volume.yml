@@ -12,7 +12,7 @@ parameters:
     description: the name of volume
   size:
     label: Volume Size
-    type: string
+    type: number
     description: the size of volume in GB
   volume_type:
     label: Volume Type
