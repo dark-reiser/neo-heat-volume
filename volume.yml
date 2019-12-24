@@ -6,14 +6,14 @@ description: Template create volume.
 # PARAMETERS
 #####################################
 parameters:
-  volume_size:
-    label: Volume Size
-    type: string
-    description: the size of volume in GB
-  volume_name:
+  name:
     label: Volume Name
     type: string
     description: the name of volume
+  size:
+    label: Volume Size
+    type: string
+    description: the size of volume in GB
   volume_type:
     label: Volume Type
     type: string
@@ -23,14 +23,16 @@ resources:
   volume:
     type: OS::Cinder::Volume
     properties:
-      name: {get_param: volume_name}
-      size: {get_param: volume_size}
+      name: {get_param: name}
+      size: {get_param: size}
+      volume_type: {get_param: volume_type}
       metadata: {neo_type: NVC2}
 
 outputs:
-  volume_id: { get_resource: volume }
-  volume_name: { get_attr: [ volume,display_name ] }
-  volume_status: { get_attr: [ volume,status ] }
-  volume_size: { get_attr: [ volume,size ] }
-  volume_attachment: { get_attr: [ volume,attachments ] }
-  volume_metadata: { get_attr: [ volume,metadata ] }
+  id: { get_resource: volume }
+  name: { get_attr: [ volume,display_name ] }
+  status: { get_attr: [ volume,status ] }
+  size: { get_attr: [ volume,size ] }
+  volume_type: { get_attr: [ volume,volume_type ] }
+  attachment: { get_attr: [ volume,attachments ] }
+  metadata: { get_attr: [ volume,metadata ] }
