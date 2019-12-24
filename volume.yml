@@ -6,10 +6,6 @@ description: Template create volume.
 # PARAMETERS
 #####################################
 parameters:
-  name:
-    label: Volume Name
-    type: string
-    description: the name of volume
   size:
     label: Volume Size
     type: number
@@ -23,7 +19,7 @@ resources:
   volume:
     type: OS::Cinder::Volume
     properties:
-      name: {get_param: name}
+      name: { get_param: 'OS::stack_name' }
       size: {get_param: size}
       volume_type: {get_param: volume_type}
       metadata: {neo_type: NVC2}
