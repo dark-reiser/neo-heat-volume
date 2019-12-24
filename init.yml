@@ -1,2 +1,2 @@
-create: "vm.yml"
-update: "vm.yml"
+create: "volume.yml"
+update: "volume.yml"
