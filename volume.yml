@@ -1,0 +1,36 @@
+heat_template_version: 2016-10-14
+
+description: Template create volume.
+
+#####################################
+# PARAMETERS
+#####################################
+parameters:
+  volume_size:
+    label: Volume Size
+    type: string
+    description: the size of volume in GB
+  volume_name:
+    label: Volume Name
+    type: string
+    description: the name of volume
+  volume_type:
+    label: Volume Type
+    type: string
+    description: the type of volume
+
+resources:
+  volume:
+    type: OS::Cinder::Volume
+    properties:
+      name: {get_param: volume_name}
+      size: {get_param: volume_size}
+      metadata: {neo_type: NVC2}
+
+outputs:
+  volume_id: { get_resource: volume }
+  volume_name: { get_attr: [ volume,display_name ] }
+  volume_status: { get_attr: [ volume,status ] }
+  volume_size: { get_attr: [ volume,size ] }
+  volume_attachment: { get_attr: [ volume,attachments ] }
+  volume_metadata: { get_attr: [ volume,metadata ] }
