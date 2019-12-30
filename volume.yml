@@ -42,7 +42,7 @@ outputs:
     value: { get_attr: [ volume,volume_type ] }
   volume_attachment: 
     description: Volume attachments
-    value: { get_attr: [ volume,attachments ] }
+    value: { get_attr: [ volume,attachments, 0, device ] }
   volume_metadata: 
     description: Volume metadata
     value: { get_attr: [ volume,metadata ] }
